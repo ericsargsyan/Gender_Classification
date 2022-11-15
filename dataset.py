@@ -5,8 +5,8 @@ import torch
 
 
 class GenderDataset(Dataset):
-    def __init__(self, path):
-        self.data = pd.read_csv(path)
+    def __init__(self, paths):
+        self.data = pd.concat((pd.read_csv(data) for data in paths), ignore_index=True)
 
     def __getitem__(self, idx):
         waveform, _ = torchaudio.load(self.data['path'][idx])
