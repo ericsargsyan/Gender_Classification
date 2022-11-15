@@ -23,8 +23,8 @@ if __name__ == "__main__":
     config = read_yaml(parser.config_path)
     dataloader_config = config['dataloader']
 
-    train_path = config['data']['train_path'][0]
-    val_path = config['data']['val_path'][0]
+    train_path = config['data']['train_path']
+    val_path = config['data']['val_path']
 
     train_dataset = GenderDataset(train_path)
     val_dataset = GenderDataset(val_path)
