@@ -26,5 +26,5 @@ if __name__ == '__main__':
     os.makedirs(os.path.join(config['target_dir'], "labels"), exist_ok=True)
 
     for dataset_name in datasets_to_process:
-        dataset_importer = name_to_class['cv'](config)
+        dataset_importer = name_to_class[dataset_name](config)
         dataset_importer.import_dataset()

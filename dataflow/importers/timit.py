@@ -31,7 +31,7 @@ class TimitImporter:
             if split == "TRAIN":
                 names = defaultdict(lambda: [])
                 for audio in audios:
-                    name = f"{audio.split('/')[9]}{os.sep}{audio.split('/')[10]}"
+                    name = f"{audio.split(os.sep)[9]}{os.sep}{audio.split(os.sep)[10]}"
                     names[name].append(audio)
 
                 np.random.seed(12)
@@ -56,7 +56,7 @@ class TimitImporter:
         labels = []
         for audio in tqdm(audios):
             data, samplerate = sf.read(audio)
-            new_audio_filepath = os.path.join(self.target_dir, f"{split}/{ind}.wav")
+            new_audio_filepath = os.path.join(self.target_dir, f"{split}{os.sep}{ind}.wav")
 
             if (data.shape[0] / samplerate) > self.max_duration:
                 data = data[:samplerate * self.max_duration]
@@ -66,7 +66,7 @@ class TimitImporter:
             sf.write(new_audio_filepath, data, self.sr)
 
             paths.append(new_audio_filepath)
-            labels.append(audio.split('/')[-2][0])
+            labels.append(audio.split(os.sep)[-2][0])
 
             ind += 1
 
