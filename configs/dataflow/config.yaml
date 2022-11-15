@@ -1,0 +1,9 @@
+sr: 16000
+target_dir: /Users/eric/Desktop/DL/data/gender_prediction
+max_duration: 2
+datasets:
+  timit:
+    source_path: "/Users/eric/Desktop/DL/source_data/TIMIT"
+  cv:
+    source_path: "/Users/eric/Desktop/DL/source_data/CV"
+datasets_to_process: ["timit", "cv"]
