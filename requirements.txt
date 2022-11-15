@@ -1,0 +1,10 @@
+PyYAML~=6.0
+soundfile~=0.11.0
+tqdm~=4.64.1
+torch~=1.13.0
+pandas~=1.5.1
+numpy~=1.23.4
+torchaudio~=0.13.0
+sklearn~=0.0
+scikit-learn~=1.1.2
+torchmetrics~=0.10.0
