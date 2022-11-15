@@ -1,15 +1,18 @@
 log_dir: "/Users/eric/Desktop/DL/Gender_Classification/logs"
 checkpoint_path: None
 data:
-  train_path : ['/Users/eric/Desktop/DL/data/gender_prediction/labels/timit_TRAIN.csv']
-  val_path: ['/Users/eric/Desktop/DL/data/gender_prediction/labels/timit_VAL.csv']
-  test_path: ['/Users/eric/Desktop/DL/data/gender_prediction/labels/timit_TEST.csv']
+  train_path : ['/Users/eric/Desktop/DL/data/gender_prediction/labels/timit_TRAIN.csv',
+                '/Users/eric/Desktop/DL/data/gender_prediction/labels/CVoice_train.csv']
+  val_path: ['/Users/eric/Desktop/DL/data/gender_prediction/labels/timit_VAL.csv',
+                '/Users/eric/Desktop/DL/data/gender_prediction/labels/CVoice_dev.csv']
+  test_path: ['/Users/eric/Desktop/DL/data/gender_prediction/labels/timit_TEST.csv',
+                '/Users/eric/Desktop/DL/data/gender_prediction/labels/CVoice_test.csv']
 
 dataloader:
   batch_size: 128
   num_workers: 2
 
 pl_trainer:
-  limit_train_batches: 2
-  limit_val_batches: 2
+#  limit_train_batches: 2
+#  limit_val_batches: 2
   max_epochs: 500
