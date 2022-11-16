@@ -16,7 +16,7 @@ class CVImporter:
         self.csv_path = os.path.join(config['target_dir'], "labels")
 
     def import_dataset(self):
-        for split in ['dev', 'test']:
+        for split in ['train', 'dev', 'test']:
             os.makedirs(os.path.join(self.target_dir, split.upper()), exist_ok=True)
             dataset = pd.read_csv(os.path.join(self.source_path, f'cv-valid-{split}.csv'))[['filename', 'gender']]
             dataset = dataset[dataset["gender"].isin(('female', 'male'))]
