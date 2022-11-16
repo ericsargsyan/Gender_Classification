@@ -28,22 +28,16 @@ class CVImporter:
             for i in range(len(dataset)):
                 dataset.loc[i, 'name'] = dataset.loc[0, 'filename'].split(os.sep)[-1]
 
-            audios = []
             paths = []
             labels = []
-
-            # audios = list(dataset['path'].values)
-            # for audio_file in dataset['path'].values:
-            #     audios.append(audio_file)
 
             for file_name in tqdm(dataset['path'].values):
                 data_raw, samplerate = sf.read(file_name)
                 data = librosa.resample(data_raw, target_sr=self.sr, orig_sr=samplerate)
                 duration = data.shape[0] / self.sr
-                # data, samplerate = librosa.load(file_name, sr=self.sr, duration=duration)
 
                 if duration > self.max_duration:
-                    data = data[:samplerate * self.max_duration]
+                    data = data[:self.sr * self.max_duration]
                 else:
                     diff = self.max_duration * self.sr - data.shape[0]
                     data = np.pad(data, pad_width=(0, diff))
