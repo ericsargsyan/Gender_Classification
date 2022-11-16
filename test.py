@@ -20,11 +20,13 @@ if __name__ == "__main__":
     parser = arg_parser()
     config = read_yaml(parser.config_path)
 
-    test_dataset = GenderDataset(config['data']['test_path'][0])
+    test_dataset = GenderDataset(config['data']['test_path'])
     test_dataloader = DataLoader(test_dataset, batch_size=config['dataloader']['batch_size'],
                                  shuffle=True, num_workers=config['dataloader']['num_workers'])
 
-    model = GenderClassificator.load_from_checkpoint('/Users/eric/Desktop/DL/gender_prediction/epoch=27-step=1820.ckpt')
+    path = '/Users/eric/Desktop/DL/Gender_Classification/logs/version_2/checkpoints/epoch==00-val_acc_epoch=0.944107.ckpt'
+
+    model = GenderClassificator.load_from_checkpoint(path)
     # model = GenderClassificator()
     trainer = Trainer(max_epochs=config['pl_trainer']['max_epochs'])
     trainer.test(model, dataloaders=test_dataloader)
