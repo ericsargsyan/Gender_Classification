@@ -35,8 +35,10 @@ if __name__ == "__main__":
     val_dataloader = DataLoader(val_dataset, batch_size=dataloader_config['batch_size'],
                                 shuffle=False, num_workers=config['dataloader']['num_workers'])
 
+    # model = GenderClassificator()
+    # version_number = get_last_version_number(config['log_dir'][0])
     model = GenderClassificatorConvModel()
-    version_number = get_last_version_number(config['log_dir'])
+    version_number = get_last_version_number(config['log_dir'][1])
 
     logger = TensorBoardLogger(os.path.join(config['log_dir'], version_number), name='', version='')
     checkpoints_dir = os.path.join(config['log_dir'], version_number, 'checkpoints')
