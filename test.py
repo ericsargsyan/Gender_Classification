@@ -4,8 +4,6 @@ from torch.utils.data import DataLoader
 from pytorch_lightning import Trainer
 import argparse
 from dataflow.utils import read_yaml
-from pytorch_lightning.loggers import TensorBoardLogger
-from pytorch_lightning.callbacks import ModelCheckpoint
 
 
 def arg_parser():
@@ -27,6 +25,5 @@ if __name__ == "__main__":
     path = '/Users/eric/Desktop/DL/Gender_Classification/logs/version_2/checkpoints/epoch==00-val_acc_epoch=0.944107.ckpt'
 
     model = GenderClassificator.load_from_checkpoint(path)
-    # model = GenderClassificator()
     trainer = Trainer(max_epochs=config['pl_trainer']['max_epochs'])
     trainer.test(model, dataloaders=test_dataloader)
