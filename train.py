@@ -1,6 +1,7 @@
 import os
 from dataset import GenderDataset
 from model import GenderClassificator
+from conv_model import GenderClassificatorConvModel
 from torch.utils.data import DataLoader
 from pytorch_lightning import Trainer
 import argparse
@@ -34,7 +35,7 @@ if __name__ == "__main__":
     val_dataloader = DataLoader(val_dataset, batch_size=dataloader_config['batch_size'],
                                 shuffle=False, num_workers=config['dataloader']['num_workers'])
 
-    model = GenderClassificator()
+    model = GenderClassificatorConvModel()
     version_number = get_last_version_number(config['log_dir'])
 
     logger = TensorBoardLogger(os.path.join(config['log_dir'], version_number), name='', version='')
