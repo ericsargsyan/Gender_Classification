@@ -10,7 +10,7 @@ class GenderDataset(Dataset):
 
     def __getitem__(self, idx):
         waveform, _ = torchaudio.load(self.data['path'][idx])
-        x = waveform
+        x = waveform.view(-1)
         y = torch.tensor(self.data['label'] == 'M', dtype=torch.float32)
         return x, y[idx].unsqueeze(-1)
 
