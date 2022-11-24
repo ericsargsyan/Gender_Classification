@@ -11,13 +11,13 @@ class GenderClassificatorConvModel(pl.LightningModule):
         super().__init__()
         self.mfcc = MFCC()
         self.model = nn.Sequential(
-            # nn.Flatten(),
             nn.Conv1d(40, kernel_size=9, out_channels=32),
             nn.ReLU(),
             nn.Conv1d(32, kernel_size=9, out_channels=16),
+            nn.ReLU(),
             nn.Flatten(),
-
-
+            nn.Linear(145 * 16, 1),
+            nn.Sigmoid()
         )
         self.train_accuracy = torchmetrics.Accuracy()
         self.val_accuracy = torchmetrics.Accuracy()
