@@ -1,4 +1,5 @@
-log_dir: "/Users/eric/Desktop/DL/Gender_Classification/logs"
+log_dir: ["/Users/eric/Desktop/DL/Gender_Classification/logs",
+          "/Users/eric/Desktop/DL/Gender_Classification/conv_logs"]
 checkpoint_path: None
 data:
   train_path : ['/Users/eric/Desktop/DL/data/gender_prediction/labels/timit_TRAIN.csv',
