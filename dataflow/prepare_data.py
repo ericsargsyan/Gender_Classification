@@ -3,6 +3,7 @@ import argparse
 from dataflow.utils import read_yaml
 from dataflow.importers.timit import TimitImporter
 from dataflow.importers.common_voice import CVImporter
+from dataflow.importers.mozilla import MozillaCVImporter
 
 
 def arg_parser():
@@ -14,7 +15,8 @@ def arg_parser():
 
 
 name_to_class = {"timit": TimitImporter,
-                 'cv': CVImporter}
+                 'cv': CVImporter,
+                 'mozilla': MozillaCVImporter}
 
 if __name__ == '__main__':
 
@@ -27,4 +29,5 @@ if __name__ == '__main__':
 
     for dataset_name in datasets_to_process:
         dataset_importer = name_to_class[dataset_name](config)
-        dataset_importer.import_dataset()
+        print(dataset_importer)
+        # dataset_importer.import_dataset()
