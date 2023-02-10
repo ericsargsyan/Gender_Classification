@@ -22,7 +22,7 @@ if __name__ == "__main__":
     test_dataloader = DataLoader(test_dataset, batch_size=config['dataloader']['batch_size'],
                                  shuffle=True, num_workers=config['dataloader']['num_workers'])
 
-    path = '/Users/eric/Desktop/DL/Gender_Classification/logs/version_2/checkpoints/epoch==00-val_acc_epoch=0.944107.ckpt'
+    path = '/Users/eric/Desktop/DL/Gender_Classification/logs_from_zero/version_3/checkpoints/epoch=00-val_acc_epoch=0.929931.ckpt'
 
     model = GenderClassificator.load_from_checkpoint(path)
     trainer = Trainer(max_epochs=config['pl_trainer']['max_epochs'])
