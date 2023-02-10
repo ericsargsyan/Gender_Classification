@@ -36,15 +36,16 @@ if __name__ == "__main__":
                                 shuffle=False, num_workers=config['dataloader']['num_workers'])
 
     model = GenderClassificator()
-    version_number = get_last_version_number(config['log_dir'][0])
     # model = GenderClassificatorConvModel()
+    # print(model)
+    version_number = get_last_version_number(config['log_dir'][0])
     # version_number = get_last_version_number(config['log_dir'][1])
 
     logger = TensorBoardLogger(os.path.join(config['log_dir'][0], version_number), name='', version='')
     checkpoints_dir = os.path.join(config['log_dir'][0], version_number, 'checkpoints')
 
     checkpoint_callback = ModelCheckpoint(save_top_k=5,
-                                          filename="{epoch=:02d}-{val_acc_epoch:.6f}",
+                                          filename="{epoch:02d}-{val_acc_epoch:.6f}",
                                           dirpath=checkpoints_dir,
                                           monitor='val_acc_epoch')
     trainer = Trainer(callbacks=[checkpoint_callback], logger=logger, **config['pl_trainer'])
