@@ -1,6 +1,7 @@
 import os
 from dataset import GenderDataset
 from model import GenderClassificator
+from conv_model import GenderClassificatorConvModel
 import argparse
 from dataflow.utils import read_yaml
 import soundfile as sf
@@ -36,8 +37,9 @@ if __name__ == "__main__":
 
     data = torch.cat(audios)
 
-    check_path = '/Users/eric/Desktop/DL/Gender_Classification/logs/version_2/checkpoints/epoch==00-val_acc_epoch=0.944107.ckpt'
-    model = GenderClassificator.load_from_checkpoint(check_path)
+    check_path = '/Users/eric/Desktop/DL/Gender_Classification/model_logs/version_2/checkpoints/epoch=07-val_acc_epoch=0.974079.ckpt'
+    # model = GenderClassificator.load_from_checkpoint(check_path)
+    model = GenderClassificatorConvModel.load_from_checkpoint(check_path)
     model.eval()
     y_prob = model(data)
     print(y_prob)
